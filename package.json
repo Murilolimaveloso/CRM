@@ -1,0 +1,21 @@
+{
+  "name": "crm-imobiliario-frontend",
+  "version": "1.0.0",
+  "description": "CRM Imobiliário - Sistema Completo de Gestão Imobiliária",
+  "main": "frontend/index.html",
+  "scripts": {
+    "start": "python backend/app.py"
+  },
+  "keywords": [
+    "crm",
+    "real-estate",
+    "imobiliario",
+    "property-management",
+    "leads",
+    "ai",
+    "whatsapp",
+    "payments"
+  ],
+  "author": "Murilo Lima Veloso",
+  "license": "MIT"
+}
