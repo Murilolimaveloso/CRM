@@ -2,6 +2,23 @@
 
 Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 
+## [1.0.1] - 2024-02-09
+
+### 🔒 Security
+
+- **CRITICAL SECURITY UPDATE:** Updated gunicorn from 21.2.0 to 22.0.0
+  - Fixed HTTP Request/Response Smuggling vulnerability
+  - Fixed Request Smuggling leading to endpoint restriction bypass
+  - **Impact:** HIGH - Immediate update recommended for all deployments
+  - **Action Required:** Run `pip install --upgrade gunicorn` on existing deployments
+
+### 📄 Documentation
+
+- Added SECURITY.md with vulnerability details and mitigation steps
+- Updated security recommendations
+
+---
+
 ## [1.0.0] - 2024-02-09
 
 ### 🎉 Lançamento Inicial
