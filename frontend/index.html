@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM Imobiliário - Sistema Completo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Login Screen -->
+        <div id="login-screen" class="screen">
+            <div class="login-container">
+                <h1>🏠 CRM Imobiliário</h1>
+                <h2>Sistema de Gestão Imobiliária</h2>
+                <form id="login-form">
+                    <input type="text" id="username" placeholder="Usuário" required>
+                    <input type="password" id="password" placeholder="Senha" required>
+                    <button type="submit">Entrar</button>
+                </form>
+                <p class="demo-info">Demo: usuário: admin / senha: admin123</p>
+            </div>
+        </div>
+
+        <!-- Main Dashboard -->
+        <div id="dashboard-screen" class="screen" style="display: none;">
+            <nav class="sidebar">
+                <h2>CRM Imobiliário</h2>
+                <ul>
+                    <li><a href="#" data-view="dashboard" class="active">📊 Dashboard</a></li>
+                    <li><a href="#" data-view="properties">🏠 Imóveis</a></li>
+                    <li><a href="#" data-view="leads">👥 Leads</a></li>
+                    <li><a href="#" data-view="reports">📈 Relatórios</a></li>
+                    <li><a href="#" data-view="ai">🤖 IA - Sugestão de Preço</a></li>
+                    <li><a href="#" data-view="integrations">🔗 Integrações</a></li>
+                    <li><a href="#" id="logout-btn">🚪 Sair</a></li>
+                </ul>
+            </nav>
+
+            <main class="main-content">
+                <div class="header">
+                    <h1 id="page-title">Dashboard</h1>
+                    <div class="user-info">
+                        <span id="user-name">Usuário</span>
+                    </div>
+                </div>
+
+                <div id="content">
+                    <!-- Dashboard View -->
+                    <div id="view-dashboard" class="view">
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <h3>Imóveis Ativos</h3>
+                                <p class="stat-number" id="stat-properties">-</p>
+                            </div>
+                            <div class="stat-card">
+                                <h3>Novos Leads Hoje</h3>
+                                <p class="stat-number" id="stat-leads-today">-</p>
+                            </div>
+                            <div class="stat-card">
+                                <h3>Receita do Mês</h3>
+                                <p class="stat-number" id="stat-revenue">-</p>
+                            </div>
+                            <div class="stat-card">
+                                <h3>Leads em Negociação</h3>
+                                <p class="stat-number" id="stat-leads-negotiating">-</p>
+                            </div>
+                        </div>
+
+                        <div class="charts-grid">
+                            <div class="chart-card">
+                                <h3>Leads por Status</h3>
+                                <div id="leads-status-chart" class="chart"></div>
+                            </div>
+                            <div class="chart-card">
+                                <h3>Atividade Recente</h3>
+                                <div id="recent-activity" class="activity-list"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Properties View -->
+                    <div id="view-properties" class="view" style="display: none;">
+                        <div class="view-header">
+                            <button id="btn-add-property" class="btn-primary">+ Adicionar Imóvel</button>
+                        </div>
+                        <div id="properties-list" class="data-grid"></div>
+                    </div>
+
+                    <!-- Leads View -->
+                    <div id="view-leads" class="view" style="display: none;">
+                        <div class="view-header">
+                            <button id="btn-add-lead" class="btn-primary">+ Adicionar Lead</button>
+                        </div>
+                        <div id="leads-list" class="data-grid"></div>
+                    </div>
+
+                    <!-- Reports View -->
+                    <div id="view-reports" class="view" style="display: none;">
+                        <div class="reports-grid">
+                            <div class="report-card">
+                                <h3>Visão Geral</h3>
+                                <div id="report-overview"></div>
+                            </div>
+                            <div class="report-card">
+                                <h3>Imóveis por Tipo</h3>
+                                <div id="report-properties"></div>
+                            </div>
+                            <div class="report-card">
+                                <h3>Leads por Fonte</h3>
+                                <div id="report-leads"></div>
+                            </div>
+                            <div class="report-card">
+                                <h3>Vendas e Receita</h3>
+                                <div id="report-sales"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI View -->
+                    <div id="view-ai" class="view" style="display: none;">
+                        <div class="ai-container">
+                            <h2>🤖 Sugestão de Preço com IA</h2>
+                            <p>Utilize inteligência artificial para sugerir o preço ideal para um imóvel</p>
+                            
+                            <form id="ai-price-form" class="form-card">
+                                <div class="form-group">
+                                    <label>Tipo de Imóvel</label>
+                                    <select id="ai-property-type" required>
+                                        <option value="apartamento">Apartamento</option>
+                                        <option value="casa">Casa</option>
+                                        <option value="terreno">Terreno</option>
+                                        <option value="comercial">Comercial</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Área (m²)</label>
+                                    <input type="number" id="ai-area" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Quartos</label>
+                                    <input type="number" id="ai-bedrooms" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Banheiros</label>
+                                    <input type="number" id="ai-bathrooms" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Vagas de Garagem</label>
+                                    <input type="number" id="ai-parking" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Cidade</label>
+                                    <input type="text" id="ai-city" required>
+                                </div>
+                                <button type="submit" class="btn-primary">Calcular Preço Sugerido</button>
+                            </form>
+
+                            <div id="ai-result" class="ai-result" style="display: none;">
+                                <h3>Resultado da Análise</h3>
+                                <div class="price-suggestion">
+                                    <p>Preço Sugerido pela IA:</p>
+                                    <h2 id="ai-suggested-price">-</h2>
+                                </div>
+                                <div class="confidence-level">
+                                    <p>Nível de Confiança: <span id="ai-confidence">-</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Integrations View -->
+                    <div id="view-integrations" class="view" style="display: none;">
+                        <div class="integrations-grid">
+                            <div class="integration-card">
+                                <h3>📱 WhatsApp Business</h3>
+                                <p>Envie mensagens automáticas para seus leads</p>
+                                <form id="whatsapp-form">
+                                    <input type="tel" id="whatsapp-number" placeholder="Número (+55...)" required>
+                                    <textarea id="whatsapp-message" placeholder="Mensagem" required></textarea>
+                                    <button type="submit" class="btn-primary">Enviar WhatsApp</button>
+                                </form>
+                            </div>
+                            
+                            <div class="integration-card">
+                                <h3>💳 Pagamentos</h3>
+                                <p>Integração com Pix e Cartão</p>
+                                <div class="payment-options">
+                                    <button class="btn-secondary" id="btn-pix">Gerar Pix</button>
+                                    <button class="btn-secondary" id="btn-card">Processar Cartão</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
